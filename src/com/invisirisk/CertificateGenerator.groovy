@@ -1,7 +1,7 @@
 package com.invisirisk
 
 class CertificateGenerator {
-    static void generate() {
+    static void generate(script) {
         def caFile = "/etc/ssl/certs/pse.pem"
 
         // Use Jenkins' HTTP request plugin to fetch the certificate
@@ -19,17 +19,17 @@ class CertificateGenerator {
         writeFile file: caFile, text: response.content
 
         // Update CA certificates
-        sh 'update-ca-certificates'
+        script.sh 'update-ca-certificates'
 
         // Configure Git to use the new CA file
-        sh "git config --global http.sslCAInfo ${caFile}"
+        script.sh "git config --global http.sslCAInfo ${caFile}"
 
         // Set environment variables
         env.NODE_EXTRA_CA_CERTS = caFile
         env.REQUESTS_CA_BUNDLE = caFile
 
         // If you need to use these variables in npm, you can add:
-        sh """
+        script.sh """
             npm config set cafile ${caFile}
             npm config set strict-ssl false
         """

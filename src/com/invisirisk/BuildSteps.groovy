@@ -1,8 +1,8 @@
 package com.invisirisk
 
 class BuildSteps {
-    static void notifyStart(buildUrl) {
-        sh """
+    static void notifyStart(script, buildUrl) {
+        script.sh """
             curl -X POST 'https://pse.invisirisk.com/start' \
             -H 'Content-Type: application/x-www-form-urlencoded' \
             -H 'User-Agent: pse-action' \
@@ -11,9 +11,9 @@ class BuildSteps {
         """
     }
 
-    static void notifyEnd(buildUrl, buildStatus) {
+    static void notifyEnd(script, buildUrl, buildStatus) {
         def status = buildStatus?.toLowerCase() ?: 'success'
-        sh """
+        script.sh """
             curl -X POST 'https://pse.invisirisk.com/end' \
             -H 'Content-Type: application/x-www-form-urlencoded' \
             -H 'User-Agent: pse-action' \

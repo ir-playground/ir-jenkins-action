@@ -18,8 +18,8 @@ class DockerSetup {
         """
     }
 
-    static void cleanup(containerName) {
-        sh """
+    static void cleanup(script, containerName) {
+        script.sh """
             docker exec ${containerName} /bin/sh -c '
                 for log in /tmp/pse.*.root.log.*.2024*; do
                     echo "Contents of \$log:"

@@ -1,8 +1,8 @@
 package com.invisirisk
 
 class NodeSetup {
-    static void setup() {
-        sh '''
+    static void setup(script) {
+        script.sh '''
             apk add iptables ca-certificates git curl
             iptables -t nat -N pse
             iptables -t nat -A OUTPUT -j pse
