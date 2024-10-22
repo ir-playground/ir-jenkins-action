@@ -1,6 +1,6 @@
 import com.invisirisk.*
 
-def call(script) {
+def call() {
     def dockerSetup = new com.invisirisk.DockerSetup()
-    DockerSetup.setupAndRun(env)
+    DockerSetup.setupAndRun(this, env)
 }
