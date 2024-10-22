@@ -7,7 +7,13 @@ class BuildSteps {
             -H 'Content-Type: application/x-www-form-urlencoded' \
             -H 'User-Agent: pse-action' \
             -d 'build_url=${buildUrl}' \
-            -k
+            -k \
+            --tlsv1.2 \
+            --insecure \
+            --retry 3 \
+            --retry-delay 2 \
+            --max-time 10 \
+            || true
         """
     }
 
@@ -18,7 +24,13 @@ class BuildSteps {
             -H 'Content-Type: application/x-www-form-urlencoded' \
             -H 'User-Agent: pse-action' \
             -d 'build_url=${buildUrl}&status=${status}' \
-            -k
+            -k \
+            --tlsv1.2 \
+            --insecure \
+            --retry 3 \
+            --retry-delay 2 \
+            --max-time 10 \
+            || true
         """
     }
 }
