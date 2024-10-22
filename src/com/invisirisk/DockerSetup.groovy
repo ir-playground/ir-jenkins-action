@@ -14,7 +14,7 @@ class DockerSetup {
             -v ${WORKSPACE}/ca.crt:/usr/local/share/ca-certificates/custom-ca.crt \
             -v ${WORKSPACE}/ca.key:/etc/ssl/private/custom-ca.key \
             -v ${WORKSPACE}/custom_cfg.yaml:/cfg.yaml \
-            invisirisk/pse:latest"
+            invisirisk/pse:latest
         """
     }
 
