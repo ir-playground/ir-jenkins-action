@@ -4,7 +4,7 @@ class DockerSetup {
     static void setupAndRun(script, env) {
         def WORKSPACE = script.env.WORKSPACE
         script.sh """
-            echo "setting up docker"
+            echo "setting up docker///////////////////////////////////////////////////////////////"
             docker run -d --name ${env.PSE_CONTAINER_NAME} \
             -e INVISIRISK_JWT_TOKEN=${env.INVISIRISK_JWT_TOKEN} \
             -e PSE_DEBUG_FLAG=${env.PSE_DEBUG_FLAG} \
@@ -21,7 +21,7 @@ class DockerSetup {
 
     static void cleanup(script, containerName) {
         script.sh """
-            echo "setting up end docker"
+            echo "setting up end docker____________________________________________"
             docker exec ${containerName} /bin/sh -c '
                 for log in /tmp/pse.*.root.log.*.2024*; do
                     echo "Contents of \$log:"
