@@ -11,9 +11,6 @@ class DockerSetup {
             -e INVISIRISK_PORTAL=${env.INVISIRISK_PORTAL} \
             -e POLICY_URL=${env.POLICY_URL} \
             -e POLICY_AUTH_TOKEN=${env.POLICY_AUTH_TOKEN} \
-            -v ${WORKSPACE}/ca.crt:/usr/local/share/ca-certificates/custom-ca.crt \
-            -v ${WORKSPACE}/ca.key:/etc/ssl/private/custom-ca.key \
-            -v ${WORKSPACE}/custom_cfg.yaml:/cfg.yaml \
             invisirisk/pse:latest
         """
     }
