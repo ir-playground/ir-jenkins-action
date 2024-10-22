@@ -6,7 +6,7 @@ You can use the following script to run the pipeline. This example shows how to 
 @Library('ir-jenkins-action') _
 
 pipeline {
-    agent any
+    agent none  // We'll specify agents for each stage
 
     environment {
         INVISIRISK_JWT_TOKEN = credentials('INVISIRISK_JWT_TOKEN')
@@ -19,10 +19,11 @@ pipeline {
     }
 
     stages {
-        stage('Setup') {
+        stage('Setup PSE') {
+            agent any  // This runs on the Jenkins agent directly
             steps {
                 script {
-                    buildUrl = pseStart()
+                    pseDockerUp()
                 }
             }
         }
@@ -30,12 +31,14 @@ pipeline {
         stage('Build and Test') {
             agent {
                 docker {
-                    image 'node:14'  // Use an appropriate Node.js image
-                    args '-v $HOME/.npm:/root/.npm'  // Cache npm packages
+                    image 'node:14'
+                    args '-v $HOME/.npm:/root/.npm'
                 }
             }
             steps {
-                // User's custom build steps go here, now running inside the container
+                script {
+                    pseStart()
+                }
                 sh '''
                     npm config set cache /root/.npm
                     npm install
@@ -49,8 +52,10 @@ pipeline {
 
     post {
         always {
-            script {
-                pseEnd(buildUrl)
+            node('') {  // This runs on any available Jenkins agent
+                script {
+                    pseEnd()
+                }
             }
         }
     }

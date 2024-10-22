@@ -1,7 +1,6 @@
 import com.invisirisk.*
 
 def call() {
-    DockerSetup.setupAndRun(env)
     IpTablesSetup.setup()
     CertificateGenerator.generate()
 
