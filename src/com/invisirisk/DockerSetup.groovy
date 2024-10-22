@@ -2,6 +2,7 @@ package com.invisirisk
 
 class DockerSetup {
     static void setupAndRun(env) {
+        def WORKSPACE = script.env.WORKSPACE
         sh """
             docker run -d --name ${env.PSE_CONTAINER_NAME} \
             -e INVISIRISK_JWT_TOKEN=${env.INVISIRISK_JWT_TOKEN} \
