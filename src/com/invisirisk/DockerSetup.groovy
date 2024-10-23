@@ -25,16 +25,10 @@ class DockerSetup {
         """
     }
 
-    static void logs(script, containerName) {
+    static void cleanup(script, containerName) {
         script.sh """
             echo "Final PSE Proxy Logs:"
             docker logs ${containerName}
-        """
-    }
-
-    static void cleanup(script, containerName) {
-        script.sh """
-
             echo "Performing cleanup"
             docker stop ${containerName} || true
             docker rm ${containerName} || true
