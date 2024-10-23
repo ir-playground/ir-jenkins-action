@@ -11,7 +11,7 @@ class DockerSetup {
             -e INVISIRISK_PORTAL=${env.INVISIRISK_PORTAL} \
             -e POLICY_URL=${env.POLICY_URL} \
             -e POLICY_AUTH_TOKEN=${env.POLICY_AUTH_TOKEN} \
-            -cap-add=NET_ADMIN \
+            --cap-add=NET_ADMIN \
             invisirisk/pse:latest
         """
     }
