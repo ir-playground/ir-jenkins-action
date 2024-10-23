@@ -2,8 +2,8 @@ package com.invisirisk
 
 // class NodeSetup {
 class IpTablesSetup {
-    static void setup(script, env) {
-        def containerName = env.PSE_CONTAINER_NAME
+    static void setup(script) {
+        def containerName = script.env.PSE_CONTAINER_NAME
         
         script.sh """
             echo "Installing dependencies"
