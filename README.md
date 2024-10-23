@@ -44,6 +44,10 @@ pipeline {
                     npm run build --if-present
                     npm test
                 '''
+
+                script {
+                    pseEnd()
+                }
             }
         }
     }
@@ -52,7 +56,7 @@ pipeline {
         always {
             node('') {  // This runs on any available Jenkins agent
                 script {
-                    pseEnd()
+                    pseDockerDown()
                 }
             }
         }
