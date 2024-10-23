@@ -1,6 +1,7 @@
 package com.invisirisk
 
-class NodeSetup {
+// class NodeSetup {
+class IpTablesSetup {
     static void setup(script) {
         script.sh '''
             echo "Installing dependencies"
