@@ -39,7 +39,7 @@ class CertificateGenerator {
     static void generate(script) {
         def caFile = "/etc/ssl/certs/pse.pem"
 
-        script.sh 'running get'
+        script.sh 'echo "running get" '
         // Use Jenkins' HTTP request plugin to fetch the certificate
         def response = script.httpRequest(
             url: 'https://pse.invisirisk.com/ca',
