@@ -4,7 +4,7 @@ class CertificateGenerator {
     static void generate(script) {
         def caFile = "/etc/ssl/certs/pse.pem"
 
-        script.sh 'echo "running get" '
+        script.sh "echo 'Downloading CA certificate'"
         // Use Jenkins' HTTP request plugin to fetch the certificate
         def response = script.httpRequest(
             url: 'https://pse.invisirisk.com/ca',
@@ -13,10 +13,12 @@ class CertificateGenerator {
         )
 
         if (response.status != 200) {
+            script.sh "echo 'Error getting CA certificate, received status ${response.status}'"
             script.error("Error getting CA certificate, received status ${response.status}")
         }
-        script.sh ${response.content}
-        script.sh 'writing certificate'
+
+        script.sh "echo 'Installing CA certificate'"
+
         // Write the certificate to the file
         script.writeFile file: caFile, text: response.content
 
