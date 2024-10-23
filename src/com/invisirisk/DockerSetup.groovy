@@ -24,8 +24,8 @@ class DockerSetup {
             docker logs ${containerName}
 
             echo "Performing cleanup"
-            docker stop ${containerName} || true
-            docker rm ${containerName} || true
+            #docker stop ${containerName} || true
+            #docker rm ${containerName} || true
         """
     }
 }
