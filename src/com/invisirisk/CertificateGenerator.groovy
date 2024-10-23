@@ -5,26 +5,22 @@ class CertificateGenerator {
         def caFile = "/etc/ssl/certs/pse.pem"
 
         script.sh "echo 'Downloading CA certificate'"
-        // Use Jenkins' HTTP request plugin to fetch the certificate
-        def response = script.httpRequest(
-            url: 'https://pse.invisirisk.com/ca',
-            validResponseCodes: '200',
-            ignoreSslErrors: true,
-            customHeaders: [[name: 'User-Agent', value: 'Jenkins']],
-            httpMode: 'GET',
-            contentType: 'APPLICATION_JSON',
-            acceptType: 'APPLICATION_JSON'
-        )
 
-        if (response.status != 200) {
-            script.sh "echo 'Error getting CA certificate, received status ${response.status}'"
-            script.error("Error getting CA certificate, received status ${response.status}")
+        // Use curl to fetch the certificate
+        def curlCommand = """
+            curl -s -o ${caFile} https://pse.invisirisk.com/ca \
+                -H 'User-Agent: Jenkins' \
+                --insecure
+        """
+
+        def result = script.sh(script: curlCommand, returnStatus: true)
+
+        if (result != 0) {
+            script.sh "echo 'Error getting CA certificate, curl command failed with status ${result}'"
+            script.error("Error getting CA certificate, curl command failed with status ${result}")
         }
 
         script.sh "echo 'Installing CA certificate'"
-
-        // Write the certificate to the file
-        script.writeFile file: caFile, text: response.content
 
         // Update CA certificates
         script.sh 'update-ca-certificates'
