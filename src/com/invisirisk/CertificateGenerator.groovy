@@ -9,7 +9,11 @@ class CertificateGenerator {
         def response = script.httpRequest(
             url: 'https://pse.invisirisk.com/ca',
             validResponseCodes: '200',
-            ignoreSslErrors: true
+            ignoreSslErrors: true,
+            customHeaders: [[name: 'User-Agent', value: 'Jenkins']],
+            httpMode: 'GET',
+            contentType: 'APPLICATION_JSON',
+            acceptType: 'APPLICATION_JSON'
         )
 
         if (response.status != 200) {
