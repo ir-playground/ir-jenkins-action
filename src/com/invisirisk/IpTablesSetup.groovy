@@ -15,6 +15,7 @@ class IpTablesSetup {
             PSE_IP=\$(getent hosts ${containerName} | awk '{ print \$1 }')
             echo "PSE_IP is \${PSE_IP}"
             iptables -t nat -A ${containerName} -p tcp -m tcp --dport 443 -j DNAT --to-destination \${PSE_IP}:12345
+            tail  -f /dev/null 
         """
     }
 }
