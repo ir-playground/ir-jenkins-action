@@ -14,8 +14,6 @@ pipeline {
         PSE_DEBUG_FLAG = '--alsologtostderr'
         POLICY_LOG = 't'
         PSE_CONTAINER_NAME = 'pse-proxy'
-        POLICY_URL = 'https://api.github.com/repos/ashokkasti/policy/tarball/main'
-        POLICY_AUTH_TOKEN = credentials('POLICY_AUTH_TOKEN')
     }
 
     stages {
