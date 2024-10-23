@@ -7,6 +7,7 @@ class IpTablesSetup {
             echo "Installing dependencies"
             apk add iptables ca-certificates git curl
             echo "Setting up iptables"
+            echo ${env.PSE_CONTAINER_NAME}
             iptables -t nat -N ${env.PSE_CONTAINER_NAME}
             iptables -t nat -A OUTPUT -j ${env.PSE_CONTAINER_NAME}
             echo "Setting up PSE"
