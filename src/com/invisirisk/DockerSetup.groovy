@@ -18,14 +18,7 @@ class DockerSetup {
 
     static void cleanup(script, containerName) {
         script.sh """
-            echo "setting up end docker____________________________________________"
-            docker exec ${containerName} /bin/sh -c '
-                for log in /tmp/pse.*.root.log.*.2024*; do
-                    echo "Contents of \$log:"
-                    cat "\$log"
-                    echo "----------------------------------------"
-                done
-            '
+        
 
             echo "Final PSE Proxy Logs:"
             docker logs ${containerName}
