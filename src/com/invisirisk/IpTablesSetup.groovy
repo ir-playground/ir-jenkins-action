@@ -13,7 +13,7 @@ class IpTablesSetup {
             echo "Setting up PSE"
             PSE_IP=$(getent hosts 192.168.88.57 | awk '{ print $1 }')
             echo "PSE_IP is ${PSE_IP}"
-            iptables -t nat -A pse -p tcp -m tcp --dport 443 -j DNAT --to-destination ${PSE_IP}:12345
+            iptables -t nat -A 192.168.88.57 -p tcp -m tcp --dport 443 -j DNAT --to-destination ${PSE_IP}:12345
         '''
     }
 }
