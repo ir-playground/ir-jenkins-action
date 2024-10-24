@@ -29,4 +29,3 @@ def call() {
         return "${env.JENKINS_URL}job/${env.JOB_NAME}/${env.BUILD_NUMBER}/"
     }
 }
-
