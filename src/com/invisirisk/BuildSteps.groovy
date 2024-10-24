@@ -6,7 +6,7 @@ class BuildSteps {
             curl -X POST 'https://pse.invisirisk.com/start' \
             -H 'Content-Type: application/x-www-form-urlencoded' \
             -H 'User-Agent: pse-action' \
-            -d "build_url=${buildUrl}" \
+            -d "build_url=${buildUrl}&scan_id=${script.env.SCAN_ID}" \
             -k \
             --tlsv1.2 \
             --insecure \
@@ -23,7 +23,7 @@ class BuildSteps {
             curl -X POST 'https://pse.invisirisk.com/end' \
             -H 'Content-Type: application/x-www-form-urlencoded' \
             -H 'User-Agent: pse-action' \
-            -d "build_url=${buildUrl}&status=${status}" \
+            -d "build_url=${buildUrl}&status=${status}&scan_id=${script.env.SCAN_ID}" \
             -k \
             --tlsv1.2 \
             --insecure \
