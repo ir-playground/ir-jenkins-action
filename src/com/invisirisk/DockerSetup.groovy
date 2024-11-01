@@ -5,10 +5,10 @@ class DockerSetup {
         def WORKSPACE = script.env.WORKSPACE
 
         def envVars = [
-            "INVISIRISK_JWT_TOKEN=${env.INVISIRISK_JWT_TOKEN}",
+            "INVISIRISK_JWT_TOKEN=${env.VB_API_KEY}",
             "PSE_DEBUG_FLAG=${env.PSE_DEBUG_FLAG}",
             "POLICY_LOG=${env.POLICY_LOG}",
-            "INVISIRISK_PORTAL=${env.INVISIRISK_PORTAL}"
+            "INVISIRISK_PORTAL=${env.VB_API_URL}"
         ]
 
         if (env.POLICY_URL) {

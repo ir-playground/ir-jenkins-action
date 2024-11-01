@@ -30,7 +30,7 @@ private void exportVBEnvironmentVariables() {
         error "Missing required variables: VB_API_URL or VB_API_KEY"
     }
     
-    def api_url = "${env.VB_API_URL}/utilityapi/v1/registry?api_key=${env.VB_API_KEY}"
+    def api_url = "${env.VB_API_URL}utilityapi/v1/registry?api_key=${env.VB_API_KEY}"
     
     def response = httpRequest(
         url: api_url,
@@ -67,7 +67,7 @@ private void createSBOMScan() {
     
     def response = sh(
         script: """
-            curl --location '${env.VB_API_URL}/utilityapi/v1/scan' \
+            curl --location '${env.VB_API_URL}utilityapi/v1/scan' \
             -d '${requestBody}' \
             --header ${requestHeader} \
             2>/dev/null
