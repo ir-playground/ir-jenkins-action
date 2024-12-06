@@ -21,7 +21,7 @@ class DockerSetup {
             docker run -d --name ${env.PSE_CONTAINER_NAME} \
             ${envVars.collect { "-e $it" }.join(' ')} \
             --cap-add=NET_ADMIN \
-            282904853176.dkr.ecr.us-west-2.amazonaws.com/invisirisk/pse-proxy:latest
+            282904853176.dkr.ecr.us-west-2.amazonaws.com/invisirisk/pse-proxy:dev-test
         """
     }
 
